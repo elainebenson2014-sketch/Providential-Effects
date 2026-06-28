@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Grief Care Connect — Compassionate Support for Every Loss</title>
+<meta name="description" content="Grief Care Connect provides AI-powered grief support for families, funeral homes, and churches. Compassionate, faith-aware, available 24/7."/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#FAF8F5;color:#1C1C1C;line-height:1.65;-webkit-font-smoothing:antialiased}
+:root{
+  --sage:#4A6741;--sage-light:#7A9B70;--sage-soft:#E8F0E6;
+  --warm:#8B6914;--warm-soft:#FDF5E6;--warm-light:#C9A84C;
+  --stone:#3D3530;--stone-mid:#6B5E57;--stone-light:#C4B8B0;
+  --cream:#FAF8F5;--white:#FFFFFF;--border:#E8E0D8;
+  --serif:'Cormorant Garamond',Georgia,serif;
+}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,245,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-mark{width:32px;height:32px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center}
+.nav-mark svg{width:16px;height:16px;fill:white}
+.nav-name{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--stone);letter-spacing:0.01em}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{text-decoration:none;font-size:0.85rem;font-weight:500;color:var(--stone-mid);transition:color 0.15s}
+.nav-links a:hover{color:var(--sage)}
+.nav-cta{background:var(--sage);color:white;padding:9px 20px;border-radius:6px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:background 0.15s}
+.nav-cta:hover{background:#3A5333;color:white}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:64px;background:linear-gradient(160deg,#1C2B1A 0%,#2D3D2A 40%,#3D3530 100%);display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 75% 50%,rgba(74,103,65,0.25),transparent),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(139,105,20,0.12),transparent)}
+.hero-inner{max-width:1100px;margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1}
+.hero-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--warm-light);margin-bottom:1.25rem}
+.hero-h1{font-family:var(--serif);font-size:3.6rem;font-weight:500;line-height:1.08;color:white;margin-bottom:1.5rem}
+.hero-h1 em{font-style:italic;color:#B8C9B4}
+.hero-lead{font-size:1rem;color:rgba(255,255,255,0.65);line-height:1.85;margin-bottom:2.5rem;max-width:440px}
+.hero-actions{display:flex;gap:0.85rem;flex-wrap:wrap}
+.btn-primary{background:var(--sage);color:white;padding:13px 28px;border-radius:7px;font-size:0.9rem;font-weight:600;text-decoration:none;transition:all 0.18s;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{background:#3A5333;transform:translateY(-1px)}
+.btn-ghost{background:rgba(255,255,255,0.1);color:white;padding:13px 28px;border-radius:7px;font-size:0.9rem;font-weight:500;text-decoration:none;border:1px solid rgba(255,255,255,0.2);transition:all 0.18s;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{background:rgba(255,255,255,0.18);color:white}
+
+/* HERO VISUAL */
+.hero-visual{display:flex;flex-direction:column;gap:1rem}
+.hv-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.5rem;backdrop-filter:blur(10px)}
+.hv-label{font-size:0.68rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:0.5rem}
+.hv-title{font-family:var(--serif);font-size:1rem;font-weight:500;color:white;margin-bottom:0.35rem}
+.hv-desc{font-size:0.8rem;color:rgba(255,255,255,0.55);line-height:1.6}
+.hv-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-size:0.65rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;background:rgba(74,103,65,0.25);color:#B8C9B4;border:1px solid rgba(74,103,65,0.4);margin-top:0.6rem}
+
+/* SECTION BASE */
+.sec{padding:5.5rem 2rem}
+.sec-inner{max-width:1100px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:3.5rem}
+.sec-eye{font-size:0.72rem;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--sage);margin-bottom:0.6rem}
+.sec-h2{font-family:var(--serif);font-size:2.5rem;font-weight:500;color:var(--stone);line-height:1.15;margin-bottom:0.9rem}
+.sec-h2 em{font-style:italic;color:var(--sage)}
+.sec-sub{font-size:0.95rem;color:var(--stone-mid);max-width:520px;margin:0 auto;line-height:1.85}
+
+/* WHO WE SERVE */
+.serve-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.serve-card{background:white;border:1px solid var(--border);border-radius:14px;padding:1.75rem;text-align:center;transition:transform 0.18s,box-shadow 0.18s}
+.serve-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(28,44,26,0.1)}
+.serve-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.serve-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--stone);margin-bottom:0.5rem}
+.serve-desc{font-size:0.83rem;color:var(--stone-mid);line-height:1.7}
+
+/* AGENTS */
+.agents-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.agent-card{background:white;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform 0.18s,box-shadow 0.18s}
+.agent-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(28,44,26,0.12)}
+.agent-top{padding:1.75rem 1.75rem 1.25rem;border-bottom:1px solid var(--border)}
+.agent-num{font-size:0.65rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage-light);margin-bottom:0.6rem}
+.agent-name{font-family:var(--serif);font-size:1.3rem;font-weight:600;color:var(--stone);margin-bottom:0.5rem}
+.agent-tagline{font-size:0.83rem;color:var(--stone-mid);line-height:1.65}
+.agent-body{padding:1.5rem 1.75rem}
+.agent-feature{display:flex;gap:10px;margin-bottom:0.75rem;font-size:0.83rem;color:var(--stone-mid);line-height:1.6}
+.agent-feature::before{content:'—';color:var(--sage-light);flex-shrink:0;margin-top:1px}
+.agent-for{font-size:0.72rem;font-weight:700;color:var(--sage);text-transform:uppercase;letter-spacing:0.1em;padding-top:0.75rem;border-top:1px solid var(--border);margin-top:0.75rem}
+.agent-cta{display:block;width:100%;padding:12px;background:var(--sage-soft);color:var(--sage);font-size:0.85rem;font-weight:700;text-align:center;border:none;border-radius:8px;cursor:pointer;margin-top:1.25rem;transition:background 0.15s;text-decoration:none}
+.agent-cta:hover{background:#D4E6D0;color:var(--sage)}
+
+/* FAITH SECTION */
+.faith-sec{background:linear-gradient(160deg,#1C2B1A,#2D3D2A);padding:5rem 2rem}
+.faith-inner{max-width:720px;margin:0 auto;text-align:center}
+.faith-quote{font-family:var(--serif);font-size:1.65rem;font-style:italic;color:rgba(255,255,255,0.88);line-height:1.65;margin-bottom:0.85rem}
+.faith-ref{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--warm-light)}
+.faith-line{width:48px;height:2px;background:var(--sage);margin:2rem auto}
+.faith-body{font-size:0.95rem;color:rgba(255,255,255,0.62);line-height:1.9}
+
+/* HOW IT WORKS */
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;counter-reset:step}
+.step-card{background:white;border:1px solid var(--border);border-radius:14px;padding:1.75rem;position:relative;counter-increment:step}
+.step-card::before{content:counter(step,'01' counter(step));font-family:var(--serif);font-size:2.5rem;font-weight:500;color:var(--sage-soft);line-height:1;display:block;margin-bottom:0.75rem}
+.step-card::before{content:"0" counter(step)}
+.step-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;color:var(--stone);margin-bottom:0.5rem}
+.step-desc{font-size:0.83rem;color:var(--stone-mid);line-height:1.7}
+
+/* FOOTER */
+footer{background:var(--stone);padding:3rem 2rem;text-align:center}
+.footer-name{font-family:var(--serif);font-size:1.1rem;color:white;margin-bottom:0.4rem}
+.footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.7}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem}
+  .hero-visual{display:none}
+  .hero-h1{font-size:2.6rem}
+  .serve-grid{grid-template-columns:1fr 1fr}
+  .agents-grid{grid-template-columns:1fr}
+  .steps-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .serve-grid,.steps-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero-h1{font-size:2.1rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand">
+    <div class="nav-mark">
+      <svg viewBox="0 0 24 24"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+    </div>
+    <span class="nav-name">Grief Care Connect</span>
+  </a>
+  <div class="nav-links">
+    <a href="#who-we-serve">Who We Serve</a>
+    <a href="#agents">Our Tools</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="companion.html" class="nav-cta">Get Support Now</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Grief Care Connect</div>
+      <h1 class="hero-h1">You don't have<br/>to grieve <em>alone.</em></h1>
+      <p class="hero-lead">Grief Care Connect provides compassionate, faith-aware AI support for grieving families, funeral professionals, and church communities — available any hour, in any season of loss.</p>
+      <div class="hero-actions">
+        <a href="companion.html" class="btn-primary">Talk to Someone Now →</a>
+        <a href="#agents" class="btn-ghost">Explore Our Tools</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hv-card">
+        <div class="hv-label">Grief Care Companion</div>
+        <div class="hv-title">For Families</div>
+        <div class="hv-desc">A gentle, always-available presence for anyone navigating the weight of loss — regardless of faith tradition or background.</div>
+        <div class="hv-tag">💬 Available 24/7</div>
+      </div>
+      <div class="hv-card">
+        <div class="hv-label">Grief Care Consultant</div>
+        <div class="hv-title">For Professionals</div>
+        <div class="hv-desc">An internal tool for grief counselors, funeral directors, pastors, and authors working in the bereavement space.</div>
+        <div class="hv-tag">🔒 Professional Access</div>
+      </div>
+      <div class="hv-card">
+        <div class="hv-label">Grief Care Aftercare Coordinator</div>
+        <div class="hv-title">For Organizations</div>
+        <div class="hv-desc">Structured aftercare workflows for funeral homes and churches — communications, check-ins, and follow-through.</div>
+        <div class="hv-tag">🏛️ Institutional Tool</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="who-we-serve" style="background:white">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="sec-eye">Who We Serve</div>
+      <h2 class="sec-h2">Grief touches <em>everyone.</em><br/>Our tools meet each one.</h2>
+      <p class="sec-sub">Whether you're sitting with your own loss or helping others carry theirs, Grief Care Connect has a tool designed for you.</p>
+    </div>
+    <div class="serve-grid">
+      <div class="serve-card">
+        <span class="serve-icon">🕊️</span>
+        <div class="serve-title">Grieving Families</div>
+        <div class="serve-desc">A compassionate companion available day or night — no appointments, no waiting rooms, no judgment. Just presence.</div>
+      </div>
+      <div class="serve-card">
+        <span class="serve-icon">⛪</span>
+        <div class="serve-title">Churches & Ministries</div>
+        <div class="serve-desc">Support your congregation through loss with structured aftercare, pastoral tools, and faith-rooted resources.</div>
+      </div>
+      <div class="serve-card">
+        <span class="serve-icon">🏛️</span>
+        <div class="serve-title">Funeral Homes</div>
+        <div class="serve-desc">Extend your care beyond the service with aftercare coordination, family follow-up, and bereavement operations support.</div>
+      </div>
+      <div class="serve-card">
+        <span class="serve-icon">📖</span>
+        <div class="serve-title">Grief Counselors & Authors</div>
+        <div class="serve-desc">An intelligent consulting tool for professionals — for client prep, writing projects, and grief care practice.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="agents" style="background:var(--cream)">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="sec-eye">Our Tools</div>
+      <h2 class="sec-h2">Three tools.<br/><em>One purpose.</em></h2>
+      <p class="sec-sub">Each Grief Care Connect tool is purpose-built for a specific audience — family, professional, or organization. All three share the same compassionate foundation.</p>
+    </div>
+    <div class="agents-grid">
+      <div class="agent-card">
+        <div class="agent-top">
+          <div class="agent-num">Tool 01</div>
+          <div class="agent-name">Grief Care Companion</div>
+          <div class="agent-tagline">A gentle, faith-aware presence for anyone navigating loss — available any hour, in any language of grief.</div>
+        </div>
+        <div class="agent-body">
+          <div class="agent-feature">Selectable faith traditions — Christian, Jewish, Muslim, secular, and more</div>
+          <div class="agent-feature">Adapts tone for recent loss, anticipatory grief, or long-term bereavement</div>
+          <div class="agent-feature">Built-in crisis safety — recognizes when professional support is needed</div>
+          <div class="agent-feature">No account required — immediate, private support</div>
+          <div class="agent-for">For: Families · Individuals · Anyone in grief</div>
+          <a href="companion.html" class="agent-cta">Open the Companion →</a>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-top">
+          <div class="agent-num">Tool 02</div>
+          <div class="agent-name">Grief Care Consultant</div>
+          <div class="agent-tagline">An internal multi-mode tool for grief professionals — counseling support, writing assistance, and care coordination.</div>
+        </div>
+        <div class="agent-body">
+          <div class="agent-feature">Three modes: Grief Care Consulting, Book Writing, Customer Service</div>
+          <div class="agent-feature">Grief care practice support — case prep, session notes, resource generation</div>
+          <div class="agent-feature">Book writing assistance for grief-related manuscripts and curricula</div>
+          <div class="agent-feature">Customer service mode for professional communications</div>
+          <div class="agent-for">For: Grief Counselors · Pastors · Authors · Professionals</div>
+          <a href="consultant.html" class="agent-cta">Open the Consultant →</a>
+        </div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-top">
+          <div class="agent-num">Tool 03</div>
+          <div class="agent-name">Grief Care Aftercare Coordinator</div>
+          <div class="agent-tagline">Structured bereavement operations for funeral homes and churches — follow-through care that honors every family.</div>
+        </div>
+        <div class="agent-body">
+          <div class="agent-feature">Dual mode — funeral home operations and church pastoral care</div>
+          <div class="agent-feature">Family aftercare planning — check-in timelines, communications, resources</div>
+          <div class="agent-feature">Staff coordination tools for bereavement teams</div>
+          <div class="agent-feature">Documentation and follow-up tracking support</div>
+          <div class="agent-for">For: Funeral Homes · Churches · Bereavement Teams</div>
+          <a href="aftercare.html" class="agent-cta">Open the Coordinator →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faith-sec">
+  <div class="faith-inner">
+    <div class="faith-quote">"Blessed are those who mourn, for they shall be comforted."</div>
+    <div class="faith-ref">Matthew 5:4</div>
+    <div class="faith-line"></div>
+    <p class="faith-body">Grief Care Connect holds the Christian hope as the foundation of its work — not as a rug pulled over pain, but as a floor beneath it. We sit with the griever in the dark because Christ did the same. Faith is named, never imposed. Every tradition is honored. Every person is met where they are.</p>
+  </div>
+</section>
+
+<section class="sec" id="how-it-works" style="background:white">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="sec-eye">How It Works</div>
+      <h2 class="sec-h2">Compassionate support<br/>in <em>minutes.</em></h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-title">Choose your tool</div>
+        <div class="step-desc">Select the tool designed for your situation — Companion for families, Consultant for professionals, Coordinator for organizations.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-title">Set your context</div>
+        <div class="step-desc">Share your faith tradition, relationship to grief, and what kind of support you're looking for. Everything is private.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-title">Begin the conversation</div>
+        <div class="step-desc">Your AI companion responds with presence, wisdom, and care — no scripts, no generic answers. Real support.</div>
+      </div>
+      <div class="step-card">
+        <div class="step-title">Return anytime</div>
+        <div class="step-desc">Grief doesn't keep business hours. Grief Care Connect is available 24 hours a day, every day of the year.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="background:var(--sage-soft);text-align:center">
+  <div class="sec-inner" style="max-width:600px">
+    <div class="sec-eye">You are not alone</div>
+    <h2 class="sec-h2" style="font-size:2.2rem">Grief is heavy.<br/><em>You don't have to carry it alone.</em></h2>
+    <p class="sec-sub" style="margin-bottom:2rem">The Grief Care Companion is available right now — no account, no waiting, no judgment.</p>
+    <a href="companion.html" class="btn-primary" style="font-size:1rem;padding:15px 36px;display:inline-flex">Talk to Someone Now →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Grief Care Connect</div>
+  <div class="footer-copy">
+    © 2026 ETB Enterprises, LLC · All rights reserved<br/>
+    Grief Care Connect™ is a product of ETB Enterprises, LLC · Houston, Texas<br/>
+    <span style="font-size:0.72rem;opacity:0.6;margin-top:6px;display:block">Grief Care Connect is an AI-powered support tool. It is not a substitute for licensed mental health care. If you are in crisis, please contact the 988 Suicide & Crisis Lifeline by calling or texting 988.</span>
+  </div>
+</footer>
+
+</body>
+</html>

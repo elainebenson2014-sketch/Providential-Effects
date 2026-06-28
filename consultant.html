@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Grief Care Consultant — Grief Care Connect</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#F5F2EE;color:#1C1C1C;height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+:root{--sage:#4A6741;--sage-light:#7A9B70;--sage-soft:#E8F0E6;--stone:#3D3530;--stone-mid:#6B5E57;--border:#E0D8D0;--serif:'Cormorant Garamond',Georgia,serif;--warm:#C9A84C;--navy:#1C2B3A}
+
+.header{background:linear-gradient(135deg,#1C2B3A,#2D3D50);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.header-brand{display:flex;align-items:center;gap:10px}
+.header-mark{width:28px;height:28px;border-radius:6px;background:var(--warm);display:flex;align-items:center;justify-content:center;font-size:14px}
+.header-name{font-family:var(--serif);font-size:1rem;font-weight:600;color:white}
+.header-sub{font-size:0.72rem;color:rgba(255,255,255,0.5);margin-top:1px}
+.header-back{color:rgba(255,255,255,0.5);font-size:0.78rem;text-decoration:none;transition:color 0.15s}
+.header-back:hover{color:white}
+
+/* MODE TABS */
+.mode-bar{background:white;border-bottom:1px solid var(--border);padding:0 1.5rem;display:flex;gap:0;flex-shrink:0}
+.mode-tab{padding:12px 20px;font-size:0.82rem;font-weight:600;color:var(--stone-mid);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;border:none;background:none;font-family:'Inter',sans-serif}
+.mode-tab.active{color:var(--navy);border-bottom-color:var(--warm)}
+.mode-tab:hover{color:var(--stone)}
+
+/* CHAT */
+.messages{flex:1;overflow-y:auto;padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
+.msg{display:flex;gap:10px;align-items:flex-start}
+.msg.user{margin-left:auto;flex-direction:row-reverse;max-width:75%}
+.msg.ai{max-width:80%}
+.msg-bubble{padding:12px 16px;border-radius:12px;font-size:0.88rem;line-height:1.75}
+.msg.ai .msg-bubble{background:white;border:1px solid var(--border);color:var(--stone);border-radius:4px 12px 12px 12px}
+.msg.user .msg-bubble{background:var(--navy);color:white;border-radius:12px 4px 12px 12px}
+.msg-avatar{width:30px;height:30px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-top:2px}
+.msg.ai .msg-avatar{background:linear-gradient(135deg,#1C2B3A,#2D3D50);color:var(--warm)}
+.msg.user .msg-avatar{background:var(--navy);color:white}
+.typing{display:flex;gap:4px;align-items:center;padding:4px 0}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--stone-mid);animation:bounce 1.2s ease infinite}
+.typing span:nth-child(2){animation-delay:0.2s}
+.typing span:nth-child(3){animation-delay:0.4s}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.input-bar{padding:1rem 1.5rem;background:white;border-top:1px solid var(--border);display:flex;gap:10px;align-items:flex-end;flex-shrink:0}
+.input-field{flex:1;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Inter',sans-serif;font-size:0.9rem;color:var(--stone);outline:none;resize:none;min-height:44px;max-height:140px;line-height:1.6;transition:border-color 0.15s}
+.input-field:focus{border-color:var(--navy)}
+.send-btn{width:40px;height:40px;border-radius:8px;background:var(--navy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.15s}
+.send-btn:hover{background:#14202E}
+.send-btn svg{width:16px;height:16px;fill:white}
+.send-btn:disabled{background:#C4B8B0;cursor:not-allowed}
+.chat-footer{font-size:0.7rem;color:var(--stone-mid);text-align:center;padding:8px 1.5rem;flex-shrink:0;opacity:0.7}
+
+/* MODE DESCRIPTIONS */
+.mode-desc{background:var(--sage-soft);border-bottom:1px solid #C8DCBE;padding:10px 1.5rem;font-size:0.78rem;color:#3A5333;flex-shrink:0;display:none}
+.mode-desc.visible{display:block}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">
+    <div class="header-mark">🧠</div>
+    <div>
+      <div class="header-name">Grief Care Consultant</div>
+      <div class="header-sub">Grief Care Connect · ETB Enterprises, LLC</div>
+    </div>
+  </div>
+  <a href="index.html" class="header-back">← Back to site</a>
+</div>
+
+<div class="mode-bar">
+  <button class="mode-tab active" onclick="setMode('grief')">🕊️ Grief Care</button>
+  <button class="mode-tab" onclick="setMode('book')">📖 Book Writing</button>
+  <button class="mode-tab" onclick="setMode('service')">💬 Customer Service</button>
+</div>
+
+<div class="mode-desc visible" id="modeDesc">
+  <strong>Grief Care Mode:</strong> For grief professionals — case preparation, session support, resource generation, and practice development in the bereavement space.
+</div>
+
+<div class="messages" id="messages"></div>
+<div class="chat-footer">Grief Care Consultant · © 2026 ETB Enterprises, LLC · Internal professional tool</div>
+<div class="input-bar">
+  <textarea class="input-field" id="userInput" placeholder="Ask your grief care question..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+  <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+    <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+  </button>
+</div>
+
+<script>
+let currentMode = 'grief';
+let messages = [];
+
+const SYSTEM_PROMPTS = {
+  grief: `You are the Grief Care Consultant — an expert AI consulting tool for grief professionals, created by Grief Care Connect (ETB Enterprises, LLC).
+
+FAITH FOUNDATION:
+Grief Care Connect holds the Christian hope as the foundation of its work — Death is the last enemy. Christ has defeated it. The dead in Christ shall rise. Faith is named, not imposed. Honor all traditions with equal dignity.
+
+YOUR USERS:
+Grief counselors, pastoral care workers, funeral home professionals, chaplains, bereavement coordinators, and others working in the grief care space.
+
+YOUR ROLE:
+- Case preparation and consultation
+- Session planning and resource generation
+- Grief care theory and best practices
+- Faith-integrated grief care approaches
+- Professional communications and documentation
+- Bereavement program development
+
+GUIDELINES:
+- Speak as a peer consultant — informed, collegial, and direct
+- Draw on grief theory (Worden, Kübler-Ross, Kessler, Shear, Boss) as appropriate
+- Integrate faith perspectives where relevant to the user's context
+- Be practically useful — offer frameworks, templates, language, and tools
+- Maintain professional boundaries — this tool supports, not replaces, clinical judgment`,
+
+  book: `You are the Grief Care Consultant in Book Writing Mode — an expert writing collaborator for authors working on grief-related books, curricula, devotionals, and resources. Created by Grief Care Connect (ETB Enterprises, LLC).
+
+FAITH FOUNDATION:
+Grief Care Connect holds the Christian hope as the foundation of its work. Faith is named, never imposed. Honor all traditions.
+
+YOUR ROLE:
+- Manuscript development and structure
+- Chapter outlines and content planning
+- Voice, tone, and audience calibration
+- Devotional and curriculum writing
+- Grief memoir and narrative support
+- Research synthesis and theological grounding
+- Copy editing and refinement of grief-related content
+
+GUIDELINES:
+- Match the author's voice — ask about their style and audience early
+- Offer concrete writing — draft sections, suggest titles, write samples
+- Balance theological depth with accessibility
+- Honor the dignity of the grief experience in every word
+- Be a genuine creative collaborator, not just an assistant`,
+
+  service: `You are the Grief Care Consultant in Customer Service Mode — an expert communication tool for grief care organizations responding to clients, families, and partners. Created by Grief Care Connect (ETB Enterprises, LLC).
+
+YOUR ROLE:
+- Draft professional communications for funeral homes, churches, and grief organizations
+- Respond to sensitive family inquiries with compassion and clarity
+- Handle complaints, service concerns, and difficult communications
+- Compose follow-up letters, aftercare communications, and thank-you notes
+- Write policies, FAQs, and staff communications
+- Support intake and onboarding communications for new families
+
+GUIDELINES:
+- Every family is in grief — lead with compassion in every communication
+- Be clear, warm, and professional
+- Never be defensive; honor the family's experience first
+- Draft complete communications ready for the user to review and send
+- Ask for the key details (name, situation, tone) before drafting`
+};
+
+const MODE_DESCS = {
+  grief: '<strong>Grief Care Mode:</strong> For grief professionals — case preparation, session support, resource generation, and practice development in the bereavement space.',
+  book: '<strong>Book Writing Mode:</strong> For authors working on grief-related books, curricula, devotionals, and resources — manuscript development, chapter planning, and writing collaboration.',
+  service: '<strong>Customer Service Mode:</strong> Draft compassionate, professional communications for families, partners, and staff — follow-ups, responses, letters, and more.'
+};
+
+const MODE_PLACEHOLDERS = {
+  grief: 'Ask your grief care question...',
+  book: 'Ask about your writing project...',
+  service: 'Describe the communication you need...'
+};
+
+const MODE_WELCOMES = {
+  grief: "Welcome to the Grief Care Consultant. I'm here to support your grief care practice — case preparation, session planning, resource development, and more. What are you working on today?",
+  book: "Welcome to the Book Writing mode. I'm here to help you develop your grief-related writing — whether that's a book, curriculum, devotional, or memoir. Tell me about your project.",
+  service: "Welcome to the Customer Service mode. I can help you draft compassionate, professional communications for families, staff, or partners. What communication do you need to compose today?"
+};
+
+function setMode(mode) {
+  currentMode = mode;
+  messages = [];
+  document.querySelectorAll('.mode-tab').forEach((t, i) => {
+    t.classList.toggle('active', ['grief','book','service'][i] === mode);
+  });
+  document.getElementById('modeDesc').innerHTML = MODE_DESCS[mode];
+  document.getElementById('userInput').placeholder = MODE_PLACEHOLDERS[mode];
+  const container = document.getElementById('messages');
+  container.innerHTML = '';
+  addMessage('ai', MODE_WELCOMES[mode]);
+  messages.push({ role: 'assistant', content: MODE_WELCOMES[mode] });
+}
+
+function addMessage(role, text) {
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  const labels = { grief: 'GC', book: 'BW', service: 'CS' };
+  const avatar = role === 'ai' ? labels[currentMode] : 'YOU';
+  div.innerHTML = `<div class="msg-avatar">${avatar}</div><div class="msg-bubble">${text.replace(/\n/g,'<br/>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')}</div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+  const container = document.getElementById('messages');
+  const div = document.createElement('div');
+  div.className = 'msg ai'; div.id = 'typing';
+  div.innerHTML = `<div class="msg-avatar">...</div><div class="msg-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const input = document.getElementById('userInput');
+  const text = input.value.trim();
+  if (!text) return;
+  document.getElementById('sendBtn').disabled = true;
+  addMessage('user', text);
+  messages.push({ role: 'user', content: text });
+  input.value = '';
+  input.style.height = 'auto';
+  showTyping();
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-api-key': 'proxy', 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 1000, system: SYSTEM_PROMPTS[currentMode], messages: messages.slice(-16) })
+    });
+    const data = await res.json();
+    removeTyping();
+    const reply = data.content?.[0]?.text || "I'm ready to help. Could you share a bit more detail?";
+    addMessage('ai', reply);
+    messages.push({ role: 'assistant', content: reply });
+  } catch {
+    removeTyping();
+    addMessage('ai', "There was a brief interruption. Please resend your message.");
+  }
+  document.getElementById('sendBtn').disabled = false;
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  el.style.height = Math.min(el.scrollHeight, 140) + 'px';
+}
+
+// Initialize
+addMessage('ai', MODE_WELCOMES.grief);
+messages.push({ role: 'assistant', content: MODE_WELCOMES.grief });
+</script>
+</body>
+</html>
